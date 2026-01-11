@@ -1,0 +1,4 @@
+flask
+feedparser
+openai
+newspaper3k
