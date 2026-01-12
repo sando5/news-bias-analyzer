@@ -2,10 +2,10 @@ from flask import Flask, render_template, request
 import feedparser
 from openai import OpenAI
 from newspaper import Article
+import os
 
 app = Flask(__name__)
 
-import os
 client = OpenAI(
     api_key=os.getenv("XAI_API_KEY"),
     base_url="https://api.x.ai/v1"
@@ -24,7 +24,7 @@ def fetch_top_headlines():
             "url": entry.get("link", "#"),
             "source": "BBC News",
             "description": entry.get("summary", entry.get("title", "")),
-            "image": ""  # No images in RSS
+            "image": ""  # No images in RSS; fallback later if needed
         })
     return articles
 
